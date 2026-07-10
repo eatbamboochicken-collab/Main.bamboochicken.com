@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Story | Bamboo Chicken Harare</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" />
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+      /* Custom Striped Awning Styling */
+      .striped-awning {
+        background-image: repeating-linear-gradient(to right, #2563eb, #2563eb 24px, #ffffff 24px, #ffffff 48px);
+        position: relative;
+        height: 24px;
+        width: 100%;
+      }
+
+      /* Scalloped edge for the awning */
+      .scallop-border {
+        background-image: radial-gradient(circle at 12px 0px, #ffffff 12px, transparent 13px);
+        background-size: 24px 12px;
+        background-position: 12px 0px;
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        right: 0;
+        height: 12px;
+        z-index: 10;
+      }
+
+      /* Scallop edge for the awning blue pieces */
+      .scallop-border-blue {
+        background-image: radial-gradient(circle at 12px 0px, #2563eb 12px, transparent 13px);
+        background-size: 24px 12px;
+        background-position: 0px 0px;
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        right: 0;
+        height: 12px;
+        z-index: 11;
+      }
+
+      /* Food card hover transition */
+      .food-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .food-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -8px rgba(251, 191, 36, 0.3);
+      }
+    </style>
+  </head>
+  <body class="bg-amber-50/10 text-zinc-800 font-sans antialiased selection:bg-amber-200 selection:text-amber-900">
+    
+
+    <!-- Navigation Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-amber-100 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          
+          <!-- Logo & Brand -->
+          <a href="/" class="flex items-center gap-3 group">
+            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-amber-50 shrink-0 transition-transform group-hover:scale-105">
+              <img src="assets/images/bamboo_chicken_logo_1782251083522.jpg" alt="Bamboo Chicken Logo" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            </div>
+            <div>
+              <h1 class="text-xl font-display font-bold tracking-tight text-zinc-950 flex items-center gap-1">
+                Bamboo <span class="text-amber-500">Chicken</span>
+              </h1>
+              <p class="text-[10px] uppercase tracking-widest font-bold text-zinc-500 leading-none">New Food, New Taste</p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+            <a href="/" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Home</a>
+            <a href="/menu.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Our Menu</a>
+            <a href="/about.html" class="text-amber-600 border-b-2 border-amber-500 px-1 py-2">Our Story</a>
+            <a href="/contact.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Contact & Find Us</a>
+          </nav>
+
+          <!-- Action Button -->
+          <div class="hidden md:flex items-center gap-3">
+            <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20place%20an%20order." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-4 py-2.5 rounded-full flex items-center gap-1.5 transition-all shadow-md">
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+              Order via WhatsApp
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-zinc-600 hover:bg-amber-50 focus:outline-none">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            <i data-lucide="x" id="close-icon" class="w-6 h-6 hidden"></i>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-amber-100 absolute top-20 left-0 w-full shadow-lg transition-all">
+        <div class="px-4 pt-3 pb-6 space-y-3 font-semibold text-base">
+          <a href="/" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Home</a>
+          <a href="/menu.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Our Menu</a>
+          <a href="/about.html" class="block bg-amber-50 text-amber-600 px-3 py-2.5 rounded-lg">Our Story</a>
+          <a href="/contact.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Contact & Find Us</a>
+          <div class="pt-3 border-t border-zinc-100 flex flex-col gap-2">
+            <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20some%20food." target="_blank" class="w-full bg-emerald-600 text-white text-center py-3 rounded-lg font-bold flex items-center justify-center gap-2">
+              <i data-lucide="message-square" class="w-5 h-5"></i>
+              Order via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="py-16 bg-gradient-to-b from-amber-50 to-transparent border-b border-amber-100/50">
+      <div class="max-w-4xl mx-auto px-4 text-center space-y-4">
+        <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1.5 rounded-full">Our Heritage</span>
+        <h2 class="text-3xl sm:text-5xl font-display font-bold text-zinc-950">
+          The Story Behind the Magic
+        </h2>
+        <p class="text-zinc-600 text-sm sm:text-base font-medium max-w-2xl mx-auto leading-relaxed">
+          How a passion for bold flavors, double-frying crispy chicken, and honoring Harare's traditional staple food combined to make Bamboo Chicken the favorite stop along Fifth Road.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="py-16 max-w-5xl mx-auto px-4 sm:px-6 space-y-24">
+      
+      <!-- Section 1: Our Humble Beginnings -->
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-6 space-y-5">
+          <h3 class="text-2xl font-display font-bold text-zinc-950">Central Harare's Favorite Stopover</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed font-medium">
+            Located just <strong>50 meters from the bustling Roadport bus terminal</strong> on Fifth Road, Bamboo Chicken was founded to serve travelers, commuters, and Harare residents fast food that never cuts corners.
+          </p>
+          <p class="text-sm text-zinc-600 leading-relaxed font-medium">
+            We noticed that central commuters wanted something crisp, piping hot, and full of flavor to take on their journeys. We set out to refine local recipes, focusing on producing the absolute crunchiest chicken wraps, steaming beef buns, and high-quality local hand-cut potato chips.
+          </p>
+        </div>
+        <div class="md:col-span-6">
+          <div class="aspect-video rounded-3xl overflow-hidden border-4 border-white shadow-xl ring-8 ring-amber-100/50">
+            <img src="assets/images/bamboo_chicken_hero_1782251098416.jpg" alt="Mouth-watering chicken burger" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Dual Culinary Focus (Traditional + Fast Food) -->
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-6 order-last md:order-first">
+          <div class="aspect-video rounded-3xl overflow-hidden border-4 border-white shadow-xl ring-8 ring-amber-100/50 bg-amber-500/10 p-8 flex items-center justify-center">
+            <div class="text-center space-y-4">
+              <i data-lucide="heart" class="w-12 h-12 text-red-500 mx-auto fill-current"></i>
+              <h4 class="font-display font-bold text-zinc-950 text-lg">"Taste the Bamboo Magic"</h4>
+              <p class="text-xs text-zinc-500 font-bold tracking-widest uppercase">Crispy & Juicy is Our Oath</p>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-6 space-y-5">
+          <h3 class="text-2xl font-display font-bold text-zinc-950">A Bridge of Two Worlds</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed font-medium">
+            While we are famous for our golden-fried Western fast-food staples like chicken nuggets, wraps, and crispy chips, we are deeply rooted in Zimbabwean culinary tradition. 
+          </p>
+          <p class="text-sm text-zinc-600 leading-relaxed font-medium">
+            We believe that no eatery in central Harare is complete without the ultimate local comfort food. That is why we cook <strong>hot, fluffy white Sadza</strong> throughout the day, served with slow-cooked aromatic beef stew and local kovo greens. It is wholesome comfort food that tastes like home.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3: The Golden Standards (Commitment) -->
+      <section class="bg-zinc-950 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,#d97706,transparent_30%)] opacity-20"></div>
+        
+        <div class="relative z-10 space-y-8 max-w-3xl">
+          <div class="space-y-2">
+            <span class="text-xs font-bold text-amber-500 uppercase tracking-widest">Our Standards</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-white">Three Rules of the Bamboo Kitchen</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            
+            <div class="space-y-2">
+              <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20 font-bold text-xs">1</div>
+              <h4 class="font-bold text-sm text-white">Fresh Local Potatoes</h4>
+              <p class="text-xs text-zinc-400 font-medium leading-relaxed">
+                We never use frozen, imported bags. We source fresh local potatoes, hand-peeling and thin-slicing them to create our signature golden chips daily.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20 font-bold text-xs">2</div>
+              <h4 class="font-bold text-sm text-white">Double-Battered Crunchy Crust</h4>
+              <p class="text-xs text-zinc-400 font-medium leading-relaxed">
+                To achieve the "Crispy & Juicy" texture, our chicken is hand-massaged with a spice rub, double-battered in seasoned flour, and cooked at precise temperatures.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20 font-bold text-xs">3</div>
+              <h4 class="font-bold text-sm text-white">Always Affordable</h4>
+              <p class="text-xs text-zinc-400 font-medium leading-relaxed">
+                With a Chicken Piecer and Med Chips at just $1.50, and full plates like Sadza & Beef or Fried Rice at $3, we ensure high quality is accessible to all.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 border-t border-zinc-800 text-zinc-400 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          
+          <!-- Column 1: Brand -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 bg-amber-50">
+                <img src="assets/images/bamboo_chicken_logo_1782251083522.jpg" alt="Bamboo Chicken Logo" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              </div>
+              <h3 class="text-white font-display font-bold text-lg">
+                Bamboo <span class="text-amber-500">Chicken</span>
+              </h3>
+            </div>
+            <p class="text-xs leading-relaxed font-medium">
+              Crispy & Juicy. Serving Harare's best fast food meals, freshly made local chips, nuggets, pies, burgers, and traditional Sadza & Beef from central Fifth Road.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="space-y-4">
+            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Quick Links</h4>
+            <ul class="space-y-2 text-xs font-semibold">
+              <li><a href="/" class="hover:text-amber-500 transition-colors">Home Page</a></li>
+              <li><a href="/menu.html" class="hover:text-amber-500 transition-colors">Food Menu</a></li>
+              <li><a href="/about.html" class="hover:text-amber-500 transition-colors text-amber-500">Our Story</a></li>
+              <li><a href="/contact.html" class="hover:text-amber-500 transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Contact Info -->
+          <div class="space-y-4">
+            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Find Us</h4>
+            <ul class="space-y-2.5 text-xs font-medium">
+              <li class="flex items-start gap-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-amber-500 shrink-0"></i>
+                <span>Along Fifth Road, 50m from Roadport, Harare, Zimbabwe</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="phone" class="w-4 h-4 text-amber-500"></i>
+                <span>0773 532 790</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-500"></i>
+                <span>0772 878 547</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Hours -->
+          <div class="space-y-4">
+            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Our Hours</h4>
+            <ul class="space-y-2 text-xs font-semibold">
+              <li class="flex justify-between border-b border-zinc-800 pb-1.5">
+                <span>Monday - Friday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+              <li class="flex justify-between border-b border-zinc-800 pb-1.5">
+                <span>Saturday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sunday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="pt-8 border-t border-zinc-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] font-semibold">
+          <p>© 2026 Bamboo Chicken Harare. All rights reserved.</p>
+          <div class="flex gap-4">
+            <a href="/menu.html" class="hover:text-amber-500 transition-colors">Menu</a>
+            <span>•</span>
+            <a href="/contact.html" class="hover:text-amber-500 transition-colors">WhatsApp Order Support</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Interactive Logic -->
+    <script>
+      // Initialize Icons
+      lucide.createIcons();
+
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        });
+      }
+    </script>
+  </body>
+</html>

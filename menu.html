@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Menu | Bamboo Chicken Harare</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" />
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+      /* Custom Striped Awning Styling */
+      .striped-awning {
+        background-image: repeating-linear-gradient(to right, #2563eb, #2563eb 24px, #ffffff 24px, #ffffff 48px);
+        position: relative;
+        height: 24px;
+        width: 100%;
+      }
+
+      /* Scalloped edge for the awning */
+      .scallop-border {
+        background-image: radial-gradient(circle at 12px 0px, #ffffff 12px, transparent 13px);
+        background-size: 24px 12px;
+        background-position: 12px 0px;
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        right: 0;
+        height: 12px;
+        z-index: 10;
+      }
+
+      /* Scallop edge for the awning blue pieces */
+      .scallop-border-blue {
+        background-image: radial-gradient(circle at 12px 0px, #2563eb 12px, transparent 13px);
+        background-size: 24px 12px;
+        background-position: 0px 0px;
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        right: 0;
+        height: 12px;
+        z-index: 11;
+      }
+
+      /* Food card hover transition */
+      .food-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .food-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -8px rgba(251, 191, 36, 0.3);
+      }
+    </style>
+  </head>
+  <body class="bg-amber-50/10 text-zinc-800 font-sans antialiased selection:bg-amber-200 selection:text-amber-900">
+    
+
+    <!-- Navigation Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-amber-100 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          
+          <!-- Logo & Brand -->
+          <a href="/" class="flex items-center gap-3 group">
+            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-amber-50 shrink-0 transition-transform group-hover:scale-105">
+              <img src="assets/images/bamboo_chicken_logo_1782251083522.jpg" alt="Bamboo Chicken Logo" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            </div>
+            <div>
+              <h1 class="text-xl font-display font-bold tracking-tight text-zinc-950 flex items-center gap-1">
+                Bamboo <span class="text-amber-500">Chicken</span>
+              </h1>
+              <p class="text-[10px] uppercase tracking-widest font-bold text-zinc-500 leading-none">New Food, New Taste</p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+            <a href="/" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Home</a>
+            <a href="/menu.html" class="text-amber-600 border-b-2 border-amber-500 px-1 py-2">Our Menu</a>
+            <a href="/about.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Our Story</a>
+            <a href="/contact.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Contact & Find Us</a>
+          </nav>
+
+          <!-- Action Button -->
+          <div class="hidden md:flex items-center gap-3">
+            <a href="#order-builder" class="bg-zinc-950 hover:bg-zinc-900 text-amber-400 font-bold text-xs px-5 py-2.5 rounded-full flex items-center gap-1.5 transition-all shadow-md">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              View Order Estimator (<span id="cart-nav-count">0</span>)
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-zinc-600 hover:bg-amber-50 focus:outline-none">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            <i data-lucide="x" id="close-icon" class="w-6 h-6 hidden"></i>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-amber-100 absolute top-20 left-0 w-full shadow-lg transition-all">
+        <div class="px-4 pt-3 pb-6 space-y-3 font-semibold text-base">
+          <a href="/" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Home</a>
+          <a href="/menu.html" class="block bg-amber-50 text-amber-600 px-3 py-2.5 rounded-lg">Our Menu</a>
+          <a href="/about.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Our Story</a>
+          <a href="/contact.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Contact & Find Us</a>
+          <div class="pt-3 border-t border-zinc-100 flex flex-col gap-2">
+            <a href="#order-builder" class="w-full bg-zinc-950 text-amber-400 text-center py-3 rounded-lg font-bold flex items-center justify-center gap-2">
+              <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+              Order Estimator (<span id="cart-mob-count">0</span>)
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Header / Menu Banner -->
+    <section class="relative bg-zinc-950 py-16 text-white overflow-hidden">
+      <div class="absolute inset-0 bg-black/60 z-10"></div>
+      <div class="absolute inset-0">
+        <img src="assets/images/bamboo_chicken_menu_1782251124566.jpg" alt="Tasty Bamboo Menu banner" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-4">
+        <h2 class="text-3xl sm:text-5xl font-display font-extrabold tracking-tight">
+          Crispy, Juicy &amp; Savory Menu
+        </h2>
+        <p class="text-amber-400 font-bold uppercase tracking-widest text-xs sm:text-sm">
+          New Food, New Taste — Freshly Cooked in Harare
+        </p>
+        <p class="max-w-xl mx-auto text-zinc-300 text-xs sm:text-sm font-medium">
+          Choose from our selection of seasoned chicken, local chips, savory baked bites, and traditional Zimbabwean plates. Click the shopping cart icon to compile your WhatsApp order instantly.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Area: Menu & Cart Split -->
+    <main class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left Side: Menu Grid (8 Columns) -->
+        <div class="lg:col-span-8 space-y-12">
+          
+          <!-- Menu Filters -->
+          <div class="flex flex-wrap gap-2.5 pb-2 border-b border-amber-100">
+            <button class="menu-filter-btn active bg-amber-500 text-zinc-950 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all" onclick="filterMenu('all', this)">All Items</button>
+            <button class="menu-filter-btn bg-white border border-amber-100 hover:bg-amber-50 text-zinc-700 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all" onclick="filterMenu('chicken', this)">Chicken Specials</button>
+            <button class="menu-filter-btn bg-white border border-amber-100 hover:bg-amber-50 text-zinc-700 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all" onclick="filterMenu('traditional', this)">Traditional Plates</button>
+            <button class="menu-filter-btn bg-white border border-amber-100 hover:bg-amber-50 text-zinc-700 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all" onclick="filterMenu('baked', this)">Steamed &amp; Baked</button>
+            <button class="menu-filter-btn bg-white border border-amber-100 hover:bg-amber-50 text-zinc-700 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all" onclick="filterMenu('chips', this)">Chips &amp; Potato</button>
+          </div>
+
+          <!-- Category Sections -->
+          <div id="menu-items-container" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <!-- Chicken Item 1 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chicken">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Top Seller</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Chicken Wrap</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$3.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  A freshly toasted local flour tortilla packed tightly with shredded crispy seasoned chicken, shredded lettuce, tomatoes, and dynamic mayo dressing.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Chicken Wrap', 3.00)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Chicken Item 2 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chicken">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-blue-100 text-blue-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Classic Burger</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Chicken Burger</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$3.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Crispy fried battered chicken breast fillet topped with processed cheddar slice, iceberg lettuce, and zesty mayo on a toasted bun.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Chicken Burger', 3.00)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Chicken Item 3 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chicken">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-red-100 text-red-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Budget Favorite</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Chicken Piecer</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.50</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Single large piece of fresh local chicken double-coated in seasoned flour and fried crispy. Juicy on the inside, exceptionally crunchy outside.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Chicken Piecer', 1.50)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Chicken Item 4 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chicken">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Snack Pack</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Chicken Nuggets (Small)</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  A perfect portion of tender, golden-battered chicken bites. Highly popular with kids and quick snackers. Larger portion available for $2.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Chicken Nuggets (Small)', 1.00)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Chicken Item 5 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chicken">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Sharing Pack</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Chicken Nuggets (Large)</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$2.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Double portion of our delicious golden-battered chicken bites served with an extra cup of seasoned ketchup.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Chicken Nuggets (Large)', 2.00)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Chicken Item 6 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chicken">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">House Specialty</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Bamboo Chicken Skewers</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.50</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Two skewered tenders, marinated in aromatic local spices and glazed with sweet, smoky barbecue house sauce, grilled to perfection.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Bamboo Chicken Skewers', 1.50)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Traditional Item 1 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="traditional">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Zimbabwean Pride</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Sadza &amp; Beef Stew</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$3.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  The quintessential local staple. Thick, steaming hot white Sadza cornmeal, served alongside our savory slow-simmered beef stew and dark leafy kovo greens.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Sadza & Beef Stew', 3.00)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Traditional Item 2 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="traditional">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-blue-100 text-blue-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Sizzling Wok</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Fried Rice</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$3.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Quick wok-fried rice tossed with farm-fresh green onions, shredded cabbage, carrots, farm eggs, and a light dash of dark premium soy.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Fried Rice', 3.00)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Baked Item 1 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="baked">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-zinc-100 text-zinc-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Fluffy bun</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Beef Steamed Bun</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.50</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Soft, pillow-like yeast bun steamed hot. Generously stuffed with deeply seasoned, caramelized ground beef. An incredible grab-and-go bite.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Beef Steamed Bun', 1.50)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Baked Item 2 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="baked">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Puff Pastry</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Bamboo Pie</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.50</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Deliciously flaky baked golden puff-pastry pie crust with a seasoned filling of minced chicken breast and diced garden vegetables.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Bamboo Pie', 1.50)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+            <!-- Chips Item 1 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chips">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-yellow-100 text-yellow-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Crisp Crunch</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Crispy Chips</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Our famous, freshly cut potatoes, fried to a hard golden crunch and tossed with a highly addictive secret chicken-salt seasoning.
+                </p>
+              </div>
+              <div class="grid grid-cols-3 gap-1 mt-3">
+                <button class="bg-zinc-100 hover:bg-amber-500 hover:text-zinc-950 text-zinc-700 font-bold py-2 px-1 rounded-lg text-[10px] transition-all" onclick="addToCart('Crispy Chips (Small)', 0.50)">
+                  Sml $0.50
+                </button>
+                <button class="bg-amber-100 text-amber-900 font-bold py-2 px-1 rounded-lg text-[10px] transition-all" onclick="addToCart('Crispy Chips (Med)', 1.00)">
+                  Med $1.00
+                </button>
+                <button class="bg-zinc-100 hover:bg-amber-500 hover:text-zinc-950 text-zinc-700 font-bold py-2 px-1 rounded-lg text-[10px] transition-all" onclick="addToCart('Crispy Chips (Lrg)', 2.00)">
+                  Lrg $2.00
+                </button>
+              </div>
+            </div>
+
+            <!-- Chips Item 2 -->
+            <div class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 flex flex-col justify-between menu-item-card" data-category="chips">
+              <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-yellow-100 text-yellow-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Fresh cut</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Plain Chips</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.00</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Traditional local potatoes, hand-peeled, sliced, and cooked fresh daily. Soft and fluffy on the interior. Med: $1, Lrg: $2.
+                </p>
+              </div>
+              <div class="grid grid-cols-2 gap-1.5 mt-3">
+                <button class="bg-amber-100 text-amber-900 font-bold py-2 px-1 rounded-lg text-[10px] transition-all" onclick="addToCart('Plain Chips (Med)', 1.00)">
+                  Med $1.00
+                </button>
+                <button class="bg-zinc-100 hover:bg-amber-500 hover:text-zinc-950 text-zinc-700 font-bold py-2 px-1 rounded-lg text-[10px] transition-all" onclick="addToCart('Plain Chips (Lrg)', 2.00)">
+                  Lrg $2.00
+                </button>
+              </div>
+            </div>
+
+            <!-- Chips Item 3 (New) -->
+            <div class="bg-white rounded-2xl border-4 border-amber-400 p-5 flex flex-col justify-between menu-item-card relative shadow-md" data-category="chips">
+              <div class="absolute top-0 right-6 transform -translate-y-1/2 bg-amber-500 text-zinc-950 text-[9px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+                New Item!
+              </div>
+              <div class="space-y-3 pt-1">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="bg-red-100 text-red-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Crispy Magic</span>
+                    <h3 class="font-bold text-lg text-zinc-950 mt-1">Potato Crisp</h3>
+                  </div>
+                  <span class="text-amber-600 font-display font-extrabold text-lg">$1.50</span>
+                </div>
+                <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                  Our newest addition! Hand-sliced paper-thin potato wedges fried till exceptionally crisp, dusted with dry onion seasoning. Pure magic.
+                </p>
+              </div>
+              <button class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-2 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]" onclick="addToCart('Potato Crisp', 1.50)">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add to Order Estimator
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Side: Sticky Interactive WhatsApp Order Builder (4 Columns) -->
+        <div class="lg:col-span-4" id="order-builder">
+          <div class="bg-zinc-950 text-white rounded-3xl p-6 shadow-xl sticky top-24 border border-zinc-800">
+            
+            <div class="flex items-center gap-2.5 pb-4 border-b border-zinc-800 mb-6">
+              <div class="w-9 h-9 rounded-full bg-amber-500 text-zinc-950 flex items-center justify-center">
+                <i data-lucide="shopping-basket" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-base text-white">Order Estimator</h3>
+                <p class="text-[10px] text-zinc-400 font-semibold leading-none">Compile & Send via WhatsApp</p>
+              </div>
+            </div>
+
+            <!-- Empty Cart State -->
+            <div id="cart-empty" class="py-12 text-center space-y-4">
+              <i data-lucide="shopping-cart" class="w-12 h-12 text-zinc-700 mx-auto stroke-1"></i>
+              <div class="space-y-1">
+                <p class="font-bold text-sm text-zinc-300">Your order is empty</p>
+                <p class="text-[11px] text-zinc-500 max-w-[200px] mx-auto leading-relaxed">Click "Add to Order" on any delicious menu item above to build your meal.</p>
+              </div>
+            </div>
+
+            <!-- Active Cart State -->
+            <div id="cart-active" class="hidden space-y-6">
+              
+              <!-- Cart items wrapper -->
+              <div class="max-h-64 overflow-y-auto space-y-3.5 pr-1 divide-y divide-zinc-900/60" id="cart-items-list">
+                <!-- Injected via Javascript -->
+              </div>
+
+              <!-- Cart summary -->
+              <div class="pt-4 border-t border-zinc-800 space-y-2.5 font-semibold text-xs text-zinc-400">
+                <div class="flex justify-between">
+                  <span>Subtotal</span>
+                  <span class="text-zinc-200" id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Packaging &amp; Box</span>
+                  <span class="text-emerald-400">FREE</span>
+                </div>
+                <div class="flex justify-between text-sm pt-2 border-t border-zinc-900 text-white font-extrabold">
+                  <span>Estimated Total</span>
+                  <span class="text-amber-500 text-base" id="cart-total">$0.00</span>
+                </div>
+              </div>
+
+              <!-- Select Line for Ordering -->
+              <div class="space-y-2 pt-2">
+                <label for="whatsapp-line-select" class="block text-[10px] font-bold uppercase tracking-wider text-zinc-500">Choose Order Line</label>
+                <select id="whatsapp-line-select" class="w-full bg-zinc-900 border border-zinc-800 text-xs rounded-xl p-3 text-white focus:outline-none focus:border-amber-500 font-semibold">
+                  <option value="263773532790">Primary Line (0773 532 790)</option>
+                  <option value="263772878547">Secondary Line (0772 878 547)</option>
+                  <option value="263789951127">Support Line (0789 951 127)</option>
+                </select>
+              </div>
+
+              <!-- Checkout CTA -->
+              <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 transition-all active:scale-[0.98]">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+                Send Order to WhatsApp
+              </button>
+
+              <p class="text-[10px] text-zinc-500 text-center font-medium leading-normal">
+                This compiles your order into a pre-filled chat message. Pay cash upon store collection along Fifth Road!
+              </p>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 border-t border-zinc-800 text-zinc-400 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          
+          <!-- Column 1: Brand -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 bg-amber-50">
+                <img src="assets/images/bamboo_chicken_logo_1782251083522.jpg" alt="Bamboo Chicken Logo" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              </div>
+              <h3 class="text-white font-display font-bold text-lg">
+                Bamboo <span class="text-amber-500">Chicken</span>
+              </h3>
+            </div>
+            <p class="text-xs leading-relaxed font-medium">
+              Crispy & Juicy. Serving Harare's best fast food meals, freshly made local chips, nuggets, pies, burgers, and traditional Sadza & Beef from central Fifth Road.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="space-y-4">
+            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Quick Links</h4>
+            <ul class="space-y-2 text-xs font-semibold">
+              <li><a href="/" class="hover:text-amber-500 transition-colors">Home Page</a></li>
+              <li><a href="/menu.html" class="hover:text-amber-500 transition-colors text-amber-500">Food Menu</a></li>
+              <li><a href="/about.html" class="hover:text-amber-500 transition-colors">Our Story</a></li>
+              <li><a href="/contact.html" class="hover:text-amber-500 transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Contact Info -->
+          <div class="space-y-4">
+            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Find Us</h4>
+            <ul class="space-y-2.5 text-xs font-medium">
+              <li class="flex items-start gap-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-amber-500 shrink-0"></i>
+                <span>Along Fifth Road, 50m from Roadport, Harare, Zimbabwe</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="phone" class="w-4 h-4 text-amber-500"></i>
+                <span>0773 532 790</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-500"></i>
+                <span>0772 878 547</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Hours -->
+          <div class="space-y-4">
+            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Our Hours</h4>
+            <ul class="space-y-2 text-xs font-semibold">
+              <li class="flex justify-between border-b border-zinc-800 pb-1.5">
+                <span>Monday - Friday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+              <li class="flex justify-between border-b border-zinc-800 pb-1.5">
+                <span>Saturday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sunday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="pt-8 border-t border-zinc-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] font-semibold">
+          <p>© 2026 Bamboo Chicken Harare. All rights reserved.</p>
+          <div class="flex gap-4">
+            <a href="/menu.html" class="hover:text-amber-500 transition-colors">Menu</a>
+            <span>•</span>
+            <a href="/contact.html" class="hover:text-amber-500 transition-colors">WhatsApp Order Support</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Scripts and Logic -->
+    <script>
+      // Initialize Icons
+      lucide.createIcons();
+
+      // Mobile Menu Drawer Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        });
+      }
+
+      // Filter Menu Categories
+      function filterMenu(category, clickedButton) {
+        // Toggle Active State for Buttons
+        const buttons = document.querySelectorAll('.menu-filter-btn');
+        buttons.forEach(btn => {
+          btn.classList.remove('bg-amber-500', 'text-zinc-950');
+          btn.classList.add('bg-white', 'text-zinc-700', 'border', 'border-amber-100');
+        });
+
+        clickedButton.classList.remove('bg-white', 'text-zinc-700', 'border', 'border-amber-100');
+        clickedButton.classList.add('bg-amber-500', 'text-zinc-950');
+
+        // Toggle Cards Visibility
+        const cards = document.querySelectorAll('.menu-item-card');
+        cards.forEach(card => {
+          const itemCategory = card.getAttribute('data-category');
+          if (category === 'all' || itemCategory === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Shopping Cart Core Data & Logic
+      let cart = [];
+
+      function updateCartUI() {
+        const cartEmpty = document.getElementById('cart-empty');
+        const cartActive = document.getElementById('cart-active');
+        const cartItemsList = document.getElementById('cart-items-list');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const cartNavCount = document.getElementById('cart-nav-count');
+        const cartMobCount = document.getElementById('cart-mob-count');
+
+        // Calculate counts and sum
+        let totalItems = 0;
+        let totalPrice = 0.0;
+
+        cart.forEach(item => {
+          totalItems += item.quantity;
+          totalPrice += item.price * item.quantity;
+        });
+
+        // Update nav counters
+        if (cartNavCount) cartNavCount.innerText = totalItems;
+        if (cartMobCount) cartMobCount.innerText = totalItems;
+
+        if (totalItems === 0) {
+          cartEmpty.classList.remove('hidden');
+          cartActive.classList.add('hidden');
+          return;
+        }
+
+        cartEmpty.classList.add('hidden');
+        cartActive.classList.remove('hidden');
+
+        // Populate items
+        cartItemsList.innerHTML = '';
+        cart.forEach((item, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'flex justify-between items-center py-3.5 first:pt-0';
+          itemDiv.innerHTML = `
+            <div class="space-y-1">
+              <p class="font-bold text-xs text-white">${item.name}</p>
+              <p class="text-[10px] text-amber-500 font-extrabold">$${(item.price * item.quantity).toFixed(2)} <span class="text-zinc-500 font-semibold">($${item.price.toFixed(2)} ea)</span></p>
+            </div>
+            <div class="flex items-center gap-2.5 bg-zinc-900 border border-zinc-800 rounded-lg p-1">
+              <button onclick="decrementItem(${index})" class="text-zinc-400 hover:text-white p-1 rounded hover:bg-zinc-800 transition-colors">
+                <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+              </button>
+              <span class="text-xs font-bold text-white min-w-[12px] text-center">${item.quantity}</span>
+              <button onclick="incrementItem(${index})" class="text-zinc-400 hover:text-white p-1 rounded hover:bg-zinc-800 transition-colors">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `;
+          cartItemsList.appendChild(itemDiv);
+        });
+
+        // Re-init lucide icons on dynamically loaded items
+        lucide.createIcons();
+
+        // Update prices
+        cartSubtotal.innerText = `$${totalPrice.toFixed(2)}`;
+        cartTotal.innerText = `$${totalPrice.toFixed(2)}`;
+      }
+
+      function addToCart(name, price) {
+        // Check if item exists
+        const existingIndex = cart.findIndex(item => item.name === name);
+        if (existingIndex > -1) {
+          cart[existingIndex].quantity += 1;
+        } else {
+          cart.push({ name: name, price: price, quantity: 1 });
+        }
+        updateCartUI();
+      }
+
+      function incrementItem(index) {
+        cart[index].quantity += 1;
+        updateCartUI();
+      }
+
+      function decrementItem(index) {
+        cart[index].quantity -= 1;
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+        updateCartUI();
+      }
+
+      function sendWhatsAppOrder() {
+        if (cart.length === 0) return;
+
+        const selectElement = document.getElementById('whatsapp-line-select');
+        const phoneNumber = selectElement.value;
+
+        // Compile message
+        let message = `Hi Bamboo Chicken Harare! I'd like to place an order for store pickup:\n\n`;
+        let totalSum = 0;
+
+        cart.forEach(item => {
+          const itemCost = item.price * item.quantity;
+          message += `• ${item.quantity}x *${item.name}* ($${itemCost.toFixed(2)})\n`;
+          totalSum += itemCost;
+        });
+
+        message += `\n*Total Estimated Order Value: $${totalSum.toFixed(2)}*\n`;
+        message += `Please confirm my order and let me know when it will be ready for pickup! Thank you.`;
+
+        // Encode and redirect
+        const encodedText = encodeURIComponent(message);
+        const url = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+        window.open(url, '_blank');
+      }
+    </script>
+  </body>
+</html>
