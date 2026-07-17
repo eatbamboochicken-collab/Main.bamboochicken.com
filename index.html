@@ -1,558 +1,691 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bamboo Chicken | Harare's Crispy & Juicy Fast Food</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Space Grotesk', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
-            }
-          }
-        }
-      }
-    </script>
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" />
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-      /* Custom Striped Awning Styling */
-      .striped-awning {
-        background-image: repeating-linear-gradient(to right, #2563eb, #2563eb 24px, #ffffff 24px, #ffffff 48px);
-        position: relative;
-        height: 24px;
-        width: 100%;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crispy & Juicy, Taste the Bamboo Magic! Discover the official home of Bamboo Chicken. Experience premium gourmet chicken steamed in bamboo baskets and flash-fried to perfection.">
+  <meta name="theme-color" content="#111111">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bamboo Chicken | Crispy & Juicy, Taste the Bamboo Magic!">
+  <meta property="og:description" content="Gourmet double-fried chicken steamed in organic bamboo baskets. Crispiness you can hear, juiciness you'll remember.">
+  <meta property="og:image" content="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/logo/bamboo-chicken-header-logo.webp">
+  
+  <title>Bamboo Chicken | Crispy & Juicy, Taste the Bamboo Magic!</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/logo/bamboo-chicken-header-logo.webp">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- JavaScript -->
+  <script src="js/app.js" defer></script>
+</head>
+<body>
 
-      /* Scalloped edge for the awning */
-      .scallop-border {
-        background-image: radial-gradient(circle at 12px 0px, #ffffff 12px, transparent 13px);
-        background-size: 24px 12px;
-        background-position: 12px 0px;
-        position: absolute;
-        bottom: -12px;
-        left: 0;
-        right: 0;
-        height: 12px;
-        z-index: 10;
-      }
+  <!-- Premium Sticky Header -->
+  <header id="main-header">
+    <div class="header-container">
+      <a href="#home" class="logo-link" aria-label="Bamboo Chicken Home">
+        <img class="logo-img" src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/logo/BambooChicken_Header_Logo.webp" alt="Bamboo Chicken" loading="eager" fetchpriority="high" decoding="async" width="265" height="62">
+      </a>
+      
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="nav-link">Menu</a>
+        <a href="#special-offers" class="nav-link">Special Offers</a>
+        <a href="#locations" class="nav-link">Locations</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      
+      <!-- Call to Action -->
+      <div class="header-actions">
+        <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn btn-order">Order Now</a>
+      </div>
+      
+      <!-- Mobile Navigation Hamburger -->
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
-      /* Scallop edge for the awning blue pieces */
-      .scallop-border-blue {
-        background-image: radial-gradient(circle at 12px 0px, #2563eb 12px, transparent 13px);
-        background-size: 24px 12px;
-        background-position: 0px 0px;
-        position: absolute;
-        bottom: -12px;
-        left: 0;
-        right: 0;
-        height: 12px;
-        z-index: 11;
-      }
-
-      /* Food card hover transition */
-      .food-card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .food-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 20px -8px rgba(251, 191, 36, 0.3);
-      }
-    </style>
-  </head>
-  <body class="bg-amber-50/10 text-zinc-800 font-sans antialiased selection:bg-amber-200 selection:text-amber-900">
-    
-
-    <!-- Navigation Header -->
-    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-amber-100 shadow-sm transition-all">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          
-          <!-- Logo & Brand -->
-          <a href="/" class="flex items-center gap-3 group">
-            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-amber-50 shrink-0 transition-transform group-hover:scale-105">
-              <img src="assets/images/bamboo_chicken_logo_1782251083522.jpg" alt="Bamboo Chicken Logo" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </div>
-            <div>
-              <h1 class="text-xl font-display font-bold tracking-tight text-zinc-950 flex items-center gap-1">
-                Bamboo <span class="text-amber-500">Chicken</span>
-              </h1>
-              <p class="text-[10px] uppercase tracking-widest font-bold text-zinc-500 leading-none">New Food, New Taste</p>
-            </div>
+  <!-- Main Content Area -->
+  <main id="main-content">
+    <section class="hero-section" id="home">
+      <div class="hero-container">
+        <!-- Text Content Area -->
+        <div class="hero-content">
+          <span class="hero-brand-label">🔥 FRESHLY PREPARED</span>
+          <h1 class="hero-title">Crispy & Juicy,<br>Taste the Bamboo Magic!</h1>
+          <p class="hero-description">Freshly prepared Bamboo Chicken with a perfectly crispy coating, tender juicy meat and unforgettable flavour.</p>
+          <div class="hero-actions">
+            <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">Order Now</a>
+            <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary">View Menu</a>
+          </div>
+        </div>
+        
+        <!-- Video Media Area -->
+        <div class="hero-media">
+          <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="hero-video-link" aria-label="Order Bamboo Chicken Now">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+              <source src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/videos/gemini_generated_video_b4d15a45.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </a>
-
-          <!-- Desktop Navigation -->
-          <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
-            <a href="/" class="text-amber-600 border-b-2 border-amber-500 px-1 py-2">Home</a>
-            <a href="/menu.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Our Menu</a>
-            <a href="/about.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Our Story</a>
-            <a href="/contact.html" class="text-zinc-600 hover:text-amber-500 transition-colors px-1 py-2">Contact & Find Us</a>
-          </nav>
-
-          <!-- Action Button -->
-          <div class="hidden md:flex items-center gap-3">
-            <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20some%20food." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-4 py-2.5 rounded-full flex items-center gap-1.5 transition-all shadow-md hover:shadow-emerald-100">
-              <i data-lucide="message-square" class="w-4 h-4"></i>
-              Order via WhatsApp
-            </a>
-          </div>
-
-          <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-zinc-600 hover:bg-amber-50 focus:outline-none" aria-label="Toggle menu">
-            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
-            <i data-lucide="x" id="close-icon" class="w-6 h-6 hidden"></i>
-          </button>
-
-        </div>
-      </div>
-
-      <!-- Mobile Dropdown Menu -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-amber-100 absolute top-20 left-0 w-full shadow-lg transition-all animate-fade-in">
-        <div class="px-4 pt-3 pb-6 space-y-3 font-semibold text-base">
-          <a href="/" class="block bg-amber-50 text-amber-600 px-3 py-2.5 rounded-lg">Home</a>
-          <a href="/menu.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Our Menu</a>
-          <a href="/about.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Our Story</a>
-          <a href="/contact.html" class="block text-zinc-600 hover:bg-amber-50 hover:text-amber-500 px-3 py-2.5 rounded-lg transition-colors">Contact & Find Us</a>
-          <div class="pt-3 border-t border-zinc-100 flex flex-col gap-2">
-            <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20some%20food." target="_blank" class="w-full bg-emerald-600 text-white text-center py-3 rounded-lg font-bold flex items-center justify-center gap-2">
-              <i data-lucide="message-square" class="w-5 h-5"></i>
-              Order via WhatsApp
-            </a>
-            <a href="tel:+263773532790" class="w-full bg-amber-500 text-zinc-950 text-center py-3 rounded-lg font-bold flex items-center justify-center gap-2">
-              <i data-lucide="phone" class="w-5 h-5"></i>
-              Call Store
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-b from-amber-50/20 to-transparent">
-      <!-- Decorative background blur -->
-      <div class="absolute -top-40 -right-40 w-96 h-96 bg-amber-300/20 rounded-full blur-3xl -z-10"></div>
-      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl -z-10"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          <!-- Hero Text -->
-          <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-800 font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              Harare's Ultimate Comfort Food
-            </div>
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-zinc-950 tracking-tight leading-none">
-              New food,<br class="hidden sm:inline" /> 
-              <span class="text-amber-500 relative inline-block">New taste.<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-blue-500 rounded-full"></div></span>
-            </h2>
-            <p class="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
-              Crispy & Juicy. Taste the Bamboo magic! Stop by our storefront along Fifth Road near Roadport, Harare for the crunchiest chicken wrap, pillowy steamed buns, local Sadza & Beef, and hand-cut crispy chips.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <a href="/menu.html" class="w-full sm:w-auto text-center bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/20 transition-all hover:-translate-y-0.5">
-                Explore Our Menu
-              </a>
-              <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20the%20Chicken%20Piecer%20with%20Chips." target="_blank" class="w-full sm:w-auto text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-emerald-600/10 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                <i data-lucide="message-square" class="w-5 h-5"></i>
-                Order via WhatsApp
-              </a>
-            </div>
-
-            <!-- Trust Badges -->
-            <div class="grid grid-cols-3 gap-4 pt-8 border-t border-zinc-100 max-w-md mx-auto lg:mx-0">
-              <div class="text-center lg:text-left">
-                <p class="text-2xl font-display font-bold text-amber-600">100%</p>
-                <p class="text-xs font-semibold text-zinc-500">Fresh Potatoes</p>
-              </div>
-              <div class="text-center lg:text-left">
-                <p class="text-2xl font-display font-bold text-amber-600">Local</p>
-                <p class="text-xs font-semibold text-zinc-500">Harare Sourced</p>
-              </div>
-              <div class="text-center lg:text-left">
-                <p class="text-2xl font-display font-bold text-amber-600">Hot</p>
-                <p class="text-xs font-semibold text-zinc-500">Cooked to Order</p>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Hero Image -->
-          <div class="lg:col-span-6 relative flex justify-center">
-            <div class="relative w-full max-w-lg aspect-video sm:aspect-square lg:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-8 ring-amber-100/50">
-              <img src="assets/images/bamboo_chicken_hero_1782251098416.jpg" alt="Mouth-watering Bamboo Fried Chicken & Chips" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-              <!-- Banner Floating Tag -->
-              <div class="absolute bottom-6 right-6 bg-blue-600 text-white p-4 rounded-2xl shadow-xl border border-blue-500/30 flex items-center gap-3 backdrop-blur-sm bg-blue-600/90">
-                <div class="p-2 bg-white/20 rounded-lg">
-                  <i data-lucide="flame" class="w-6 h-6 text-amber-300"></i>
-                </div>
-                <div>
-                  <p class="text-[10px] font-bold uppercase tracking-wider text-blue-100 leading-none">Fresh & Hot</p>
-                  <p class="text-sm font-extrabold text-white">Crispy & Juicy!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- Brand Philosophy / Features -->
-    <section class="py-16 bg-white border-y border-amber-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <h2 class="text-3xl font-display font-bold text-zinc-950">Taste the Bamboo Magic</h2>
-          <p class="text-zinc-600 font-medium mt-2">Why we are Harare's preferred stopover for crispy chicken and local favorites.</p>
+    <!-- Section 3: Signature Menu -->
+    <div id="special-offers" class="scroll-anchor"></div>
+    <section class="menu-section" id="signature-menu">
+      <div class="menu-header">
+        <h2 class="menu-section-title">OUR SIGNATURE MENU</h2>
+        <p class="menu-section-subtitle">Freshly Prepared. Crispy. Juicy. Made for Every Craving.</p>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Item 1: Bamboo Chicken -->
+        <div class="menu-card">
+          <div class="menu-card-image-wrapper">
+            <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/website/bamboo_chicken_3_sticks.webp" alt="Bamboo Chicken (Signature Sticks)" class="menu-card-image" loading="lazy" referrerPolicy="no-referrer">
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Bamboo Chicken</h3>
+            <p class="menu-card-description">Our signature crispy chicken served on bamboo sticks and freshly prepared for every order.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$1.50</span>
+              <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-menu-card-order">Order Now</a>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          <!-- Card 1 -->
-          <div class="p-8 rounded-2xl bg-amber-50/50 border border-amber-100 hover:border-amber-200 transition-all">
-            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6">
-              <i data-lucide="thumbs-up" class="w-6 h-6"></i>
+        <!-- Item 2: Bamboo Pie -->
+        <div class="menu-card">
+          <div class="menu-card-image-wrapper">
+            <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/website/bamboo_pie_3.webp" alt="Bamboo Pie" class="menu-card-image" loading="lazy" referrerPolicy="no-referrer">
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Bamboo Pie</h3>
+            <p class="menu-card-description">Golden flaky pastry filled with delicious Bamboo Chicken goodness.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$1.50</span>
+              <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-menu-card-order">Order Now</a>
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-3">Crispy & Juicy</h3>
-            <p class="text-sm text-zinc-600 leading-relaxed font-medium">
-              We coat our local, tender chicken in a secret spiced flour and double-fry to locking in the juices while crafting the ultimate golden, crunchy outer crust.
-            </p>
+          </div>
+        </div>
+
+        <!-- Item 3: Bamboo Chicken Wrap -->
+        <div class="menu-card">
+          <div class="menu-card-image-wrapper">
+            <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/website/bamboo_chicken_wrap.webp" alt="Bamboo Chicken Wrap" class="menu-card-image" loading="lazy" referrerPolicy="no-referrer">
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Bamboo Chicken Wrap</h3>
+            <p class="menu-card-description">Fresh vegetables, juicy Bamboo Chicken and delicious flavour wrapped to perfection.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$3.00</span>
+              <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-menu-card-order">Order Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom View All CTA -->
+      <div class="menu-bottom-cta">
+        <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-view-all-menu">View Full Menu</a>
+      </div>
+    </section>
+
+    <!-- Section 4: Complete Meals -->
+    <section class="meals-section" id="complete-meals">
+      <div class="meals-header">
+        <h2 class="meals-section-title">COMPLETE MEALS</h2>
+        <p class="meals-section-subtitle">Hearty meals, freshly prepared every day.</p>
+      </div>
+
+      <!-- Navigation Outer Area with Arrow Controls -->
+      <div class="meals-rail-outer">
+        <button class="meals-nav-btn prev-btn" aria-label="Previous meals" id="meals-prev-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="meals-rail-container" id="meals-rail-container">
+          <div class="meals-rail" id="meals-rail">
+            <!-- Card 1: Sadza + Chicken -->
+            <div class="meal-card">
+              <div class="meal-card-image-wrapper">
+                <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/menu/bamboo_sadza_chicken.webp" alt="Sadza + Chicken" class="meal-card-image" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="meal-card-content">
+                <div class="meal-card-header">
+                  <h3 class="meal-card-title">Sadza + Chicken</h3>
+                  <span class="meal-card-price">US$3.00</span>
+                </div>
+                <p class="meal-card-description">Traditional sadza served with juicy chicken and fresh vegetables.</p>
+                <div class="meal-card-action">
+                  <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-meal-order">Order Now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Sadza + Beef -->
+            <div class="meal-card">
+              <div class="meal-card-image-wrapper">
+                <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/menu/bamboo_sadza_beef.webp" alt="Sadza + Beef" class="meal-card-image" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="meal-card-content">
+                <div class="meal-card-header">
+                  <h3 class="meal-card-title">Sadza + Beef</h3>
+                  <span class="meal-card-price">US$3.00</span>
+                </div>
+                <p class="meal-card-description">Traditional sadza served with tender beef and fresh vegetables.</p>
+                <div class="meal-card-action">
+                  <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-meal-order">Order Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="meals-nav-btn next-btn" aria-label="Next meals" id="meals-next-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Bottom View All CTA -->
+      <div class="meals-bottom-cta">
+        <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-view-all-meals">View Full Menu</a>
+      </div>
+    </section>
+
+    <!-- Section 4.5: Scan to Order -->
+    <section class="scan-order-section" id="scan-to-order">
+      <div class="scan-order-container">
+        <div class="scan-order-header">
+          <span class="scan-order-badge">PRIMARY METHOD</span>
+          <h2 class="scan-order-title">SCAN TO ORDER</h2>
+          <p class="scan-order-subtitle">Hungry? You're one scan away.</p>
+          <p class="scan-order-description">Scan the QR code below using any smartphone camera to instantly open the Bamboo Chicken online menu and place your order.</p>
+        </div>
+
+        <!-- Center QR Code Visual Area -->
+        <div class="qr-code-focus-area">
+          <div class="qr-code-glow-ring"></div>
+          <div class="qr-code-wrapper">
+            <div class="qr-corner-bracket top-left"></div>
+            <div class="qr-corner-bracket top-right"></div>
+            <div class="qr-corner-bracket bottom-left"></div>
+            <div class="qr-corner-bracket bottom-right"></div>
+            <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="qr-image-link" aria-label="Open Bamboo Chicken Online Menu">
+              <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/qr%20codes/QRcode_a1.jpg" alt="Bamboo Chicken QR Code" class="qr-image" loading="lazy" referrerPolicy="no-referrer" width="240" height="240">
+            </a>
+          </div>
+          <div class="qr-scan-guide">
+            <span class="qr-guide-dot"></span>
+            <span class="qr-guide-text">Align camera with QR code</span>
+          </div>
+        </div>
+
+        <!-- Three Premium Information Cards -->
+        <div class="scan-cards-grid">
+          <!-- Card 1: Delivery -->
+          <div class="scan-info-card">
+            <div class="scan-card-accent-line"></div>
+            <div class="scan-card-icon-wrapper">
+              <span class="scan-card-emoji" aria-hidden="true">🛵</span>
+            </div>
+            <h3 class="scan-card-title">DELIVERY</h3>
+            <p class="scan-card-highlight">Harare CBD</p>
+            <p class="scan-card-text">$2.50 Flat Rate</p>
+          </div>
+
+          <!-- Card 2: Group Orders -->
+          <div class="scan-info-card">
+            <div class="scan-card-accent-line"></div>
+            <div class="scan-card-icon-wrapper">
+              <span class="scan-card-emoji" aria-hidden="true">👥</span>
+            </div>
+            <h3 class="scan-card-title">GROUP ORDERS</h3>
+            <p class="scan-card-highlight">Breakfast & Lunch</p>
+            <p class="scan-card-text">Breakfast and Lunch group orders are recommended. Order early for faster preparation and delivery.</p>
+            <div class="scan-card-divider"></div>
+            <div class="scan-card-extra-block">
+              <p class="scan-card-text-muted">For lunch deliveries, group orders are</p>
+              <p class="scan-card-text-muted">recommended to be placed between:</p>
+              <div class="scan-card-time-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>10:00 AM – 12:00 PM</span>
+              </div>
+              <p class="scan-card-text-muted">to allow sufficient preparation time</p>
+              <p class="scan-card-text-muted">and timely delivery.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Scan Anywhere -->
+          <div class="scan-info-card">
+            <div class="scan-card-accent-line"></div>
+            <div class="scan-card-icon-wrapper">
+              <span class="scan-card-emoji" aria-hidden="true">📱</span>
+            </div>
+            <h3 class="scan-card-title">SCAN ANYWHERE</h3>
+            <p class="scan-card-highlight">No App Required</p>
+            <p class="scan-card-text">The same QR code works from another phone, a poster, a flyer, a business card or a computer screen.</p>
+          </div>
+        </div>
+
+        <!-- Bottom Scan Browse Order text -->
+        <div class="scan-order-footer-text">
+          <span>Scan</span>
+          <span class="dot-separator">•</span>
+          <span>Browse</span>
+          <span class="dot-separator">•</span>
+          <span>Order</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Visit Us -->
+    <div id="about-us" class="scroll-anchor"></div>
+    <section class="visit-section" id="locations">
+      <div class="visit-header">
+        <h2 class="visit-section-title">VISIT US</h2>
+        <p class="visit-section-subtitle">Come and enjoy freshly prepared Bamboo Chicken every day.</p>
+      </div>
+
+      <div class="visit-container">
+        <!-- Left Column: Premium Cards -->
+        <div class="visit-details-col" id="visit-details-col">
+          
+          <!-- Card 1: Live Status Card -->
+          <div class="visit-premium-card status-card" id="visit-card-status">
+            <div class="card-accent-border"></div>
+            <div class="visit-card-header">
+              <div class="visit-icon-circle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="live-indicator-wrapper">
+                <span class="pulse-dot" id="live-pulse"></span>
+                <span class="live-text" id="live-status-text">Checking...</span>
+              </div>
+            </div>
+            <div class="visit-card-main">
+              <h3 class="visit-card-subtitle" id="live-serving-text">Bamboo Chicken Status</h3>
+              <p class="visit-card-time" id="live-time-text">--</p>
+            </div>
+            <div class="visit-card-footer">
+              <span class="regular-hours-label">Operating Hours</span>
+              <span class="regular-hours-val">Mon – Sun • 07:00 AM – 08:30 PM</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Destination Card -->
+          <div class="visit-premium-card destination-card" id="visit-card-destination">
+            <div class="card-accent-border"></div>
+            <div class="visit-card-header">
+              <div class="visit-icon-circle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <h3 class="visit-card-heading">Our Destination</h3>
+            </div>
+            <div class="visit-card-main">
+              <p class="visit-destination-address">Along Fifth Road, 50 metres from Roadport, Harare, Zimbabwe</p>
+              <div class="address-aesthetic-map-placeholder">
+                <div class="map-grid-pattern"></div>
+                <div class="map-road-path"></div>
+                <div class="map-label">Fifth Road</div>
+                <div class="map-label-roadport">Roadport (50m)</div>
+                <div class="map-pin-pulse">
+                  <div class="pin-inner"></div>
+                  <div class="pin-pulse-wave"></div>
+                </div>
+              </div>
+            </div>
+            <div class="visit-card-footer">
+              <a href="https://www.google.com/maps/search/?api=1&query=Fifth+Road,+Harare,+Zimbabwe" target="_blank" rel="noopener noreferrer" class="visit-card-action-link">
+                <span>View Google Maps</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Action Card (Phone & WhatsApp Contact) -->
+          <div id="contact" class="scroll-anchor"></div>
+          <div class="visit-premium-card contact-action-card" id="visit-card-contact">
+            <div class="card-accent-border"></div>
+            <div class="visit-card-header">
+              <div class="visit-icon-circle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <h3 class="visit-card-heading">Direct Connection</h3>
+            </div>
+            <div class="visit-card-main">
+              <p class="contact-subtitle">Get in touch directly with our outlet for orders, catering, and quick inquiries.</p>
+              <div class="phone-number-display">0789951127</div>
+              
+              <!-- Buttons -->
+              <div class="visit-premium-actions">
+                <a href="tel:0789951127" class="btn-action-premium btn-action-phone" id="btn-call-premium">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>Call Store</span>
+                </a>
+                <a href="https://wa.me/263789951127" target="_blank" rel="noopener noreferrer" class="btn-action-premium btn-action-wa" id="btn-wa-premium">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                  </svg>
+                  <span>WhatsApp Chat</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Premium Storefront Card -->
+        <div class="visit-card-col" id="visit-card-col">
+          <div class="visit-storefront-card-premium" id="visit-storefront-card">
+            <div class="visit-image-container-premium" id="visit-image-container">
+              <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/website/bamboo_chicken_storefront_clean.webp" alt="Bamboo Chicken Storefront" class="visit-storefront-img-premium" id="visit-storefront-img-el" loading="lazy" referrerPolicy="no-referrer" width="480" height="320">
+              <span class="visit-store-tag-premium" id="visit-store-tag-el">Harare Outlet</span>
+            </div>
+            <div class="visit-card-body-premium" id="visit-card-body">
+              <h3 class="visit-card-title-premium" id="visit-card-title-el">Our Storefront</h3>
+              <p class="visit-card-desc-premium" id="visit-card-desc-el">Look for our welcoming storefront along Fifth Road, just 50 metres from the Roadport bus terminal. Come in and order your fresh, hot, and crispy Bamboo Chicken!</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Fifth+Road,+Harare,+Zimbabwe" target="_blank" rel="noopener noreferrer" class="btn-visit-directions-premium" id="btn-visit-directions-action">
+                <span>Get Directions</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5.5: Customer Reviews -->
+    <section class="reviews-section" id="reviews">
+      <div class="reviews-container">
+        <div class="reviews-header">
+          <span class="reviews-badge">TESTIMONIALS</span>
+          <h2 class="reviews-title">What Our Customers Say</h2>
+          <p class="reviews-subtitle">Real experiences from people who have enjoyed Bamboo Chicken.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <!-- Card 1 -->
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-author-info">
+                <div class="review-avatar">T</div>
+                <div class="review-meta-block">
+                  <h4 class="review-author-name">Tinashe M.</h4>
+                  <span class="verified-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Verified Customer
+                  </span>
+                </div>
+              </div>
+              <div class="review-stars" aria-label="5 stars rating">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+            <p class="review-text">"Fresh, delicious and served with great customer care. I'll definitely be back."</p>
           </div>
 
           <!-- Card 2 -->
-          <div class="p-8 rounded-2xl bg-blue-50/30 border border-blue-100 hover:border-blue-200 transition-all">
-            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6">
-              <i data-lucide="chef-hat" class="w-6 h-6"></i>
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-author-info">
+                <div class="review-avatar">S</div>
+                <div class="review-meta-block">
+                  <h4 class="review-author-name">Sarah K.</h4>
+                  <span class="verified-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Verified Customer
+                  </span>
+                </div>
+              </div>
+              <div class="review-stars" aria-label="5 stars rating">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-3">Double Local Taste</h3>
-            <p class="text-sm text-zinc-600 leading-relaxed font-medium">
-              We proudly serve traditional Zimbabwean comfort: thick, freshly cooked Sadza served with rich, aromatic slow-cooked Beef Stew alongside our famous fried chicken wrap.
-            </p>
+            <p class="review-text">"The chicken was crispy, juicy and worth every dollar."</p>
           </div>
 
           <!-- Card 3 -->
-          <div class="p-8 rounded-2xl bg-amber-50/50 border border-amber-100 hover:border-amber-200 transition-all">
-            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6">
-              <i data-lucide="map" class="w-6 h-6"></i>
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-author-info">
+                <div class="review-avatar">D</div>
+                <div class="review-meta-block">
+                  <h4 class="review-author-name">David C.</h4>
+                  <span class="verified-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Verified Customer
+                  </span>
+                </div>
+              </div>
+              <div class="review-stars" aria-label="5 stars rating">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-3">Roadport Convenient</h3>
-            <p class="text-sm text-zinc-600 leading-relaxed font-medium">
-              Just 50 meters from the bustling Roadport bus terminal. Whether you're catching a cross-border coach, heading to work, or shopping, we are your perfect quick stop.
-            </p>
+            <p class="review-text">"Quick service, great portions and an excellent meal."</p>
           </div>
-
         </div>
 
+        <!-- Centered Message & CTA -->
+        <div class="reviews-footer">
+          <p class="reviews-footer-note">Your review could be featured here next.</p>
+          <a href="javascript:void(0)" class="btn-review-outline">Leave a Review</a>
+        </div>
       </div>
     </section>
 
-    <!-- Top Selling Highlights (Visual Menu Preview) -->
-    <section class="py-20 bg-amber-50/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <div>
-            <h2 class="text-3xl font-display font-bold text-zinc-950">Customer Favorites</h2>
-            <p class="text-zinc-600 font-medium mt-1">Our most ordered street eats and fast meals, cooked fresh right now.</p>
-          </div>
-          <a href="/menu.html" class="self-start md:self-auto inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
-            View Full Menu (12+ Items)
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    <!-- Premium Footer Section -->
+    <footer class="main-footer" id="main-footer">
+      <div class="footer-container">
+        <!-- Column 1: Brand Info -->
+        <div class="footer-column footer-brand-col">
+          <a href="#home" class="footer-logo-link" aria-label="Bamboo Chicken Home">
+            <img class="footer-logo-img" src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/logo/BambooChicken_Header_Logo.webp" alt="Bamboo Chicken Logo" loading="lazy" referrerPolicy="no-referrer">
           </a>
+          <p class="footer-brand-tagline">
+            Crispy & Juicy,<br>Taste the Bamboo Magic!
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          <!-- Highlight Item 1 -->
-          <div class="bg-white rounded-3xl overflow-hidden border border-amber-100 shadow-sm food-card flex flex-col justify-between">
-            <div class="relative aspect-video bg-zinc-100 overflow-hidden">
-              <img src="assets/images/bamboo_chicken_hero_1782251098416.jpg" alt="Chicken Wrap" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              <div class="absolute top-4 left-4 bg-amber-500 text-zinc-950 font-bold text-xs px-2.5 py-1 rounded-full shadow-sm">
-                Top Rated
-              </div>
-              <div class="absolute bottom-4 right-4 bg-zinc-950/80 backdrop-blur-sm text-white font-display font-extrabold text-lg px-3.5 py-1 rounded-xl shadow-sm">
-                $3.00
-              </div>
-            </div>
-            <div class="p-6 space-y-4">
-              <div>
-                <h3 class="text-xl font-bold text-zinc-950">Chicken Wrap</h3>
-                <p class="text-sm text-zinc-500 mt-2 font-medium">Floury toasted tortilla wrap packed with shredded crispy chicken breast, crisp lettuce, red tomatoes, and signature Bamboo mayonnaise dressing.</p>
-              </div>
-              <div class="pt-4 border-t border-zinc-100 flex items-center justify-between">
-                <span class="text-xs text-amber-600 font-bold flex items-center gap-1">
-                  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-                  4.9 (180+ Reviews)
-                </span>
-                <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20the%20Chicken%20Wrap%20($3)." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-800 p-2.5 rounded-full transition-all" title="Order via WhatsApp">
-                  <i data-lucide="message-square" class="w-5 h-5"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Highlight Item 2 -->
-          <div class="bg-white rounded-3xl overflow-hidden border border-amber-100 shadow-sm food-card flex flex-col justify-between">
-            <div class="relative aspect-video bg-zinc-100 overflow-hidden">
-              <img src="assets/images/bamboo_chicken_menu_1782251124566.jpg" alt="Chicken Piecer & Chips" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              <div class="absolute top-4 left-4 bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-sm">
-                Hot Deal
-              </div>
-              <div class="absolute bottom-4 right-4 bg-zinc-950/80 backdrop-blur-sm text-white font-display font-extrabold text-lg px-3.5 py-1 rounded-xl shadow-sm">
-                $1.50
-              </div>
-            </div>
-            <div class="p-6 space-y-4">
-              <div>
-                <h3 class="text-xl font-bold text-zinc-950">Chicken Piecer &amp; Chips</h3>
-                <p class="text-sm text-zinc-500 mt-2 font-medium">Harare's absolute favorite budget-friendly saver. A crispy, double-fried seasoned local chicken piece served with hot, salted hand-cut crispy chips.</p>
-              </div>
-              <div class="pt-4 border-t border-zinc-100 flex items-center justify-between">
-                <span class="text-xs text-amber-600 font-bold flex items-center gap-1">
-                  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-                  4.8 (340+ Reviews)
-                </span>
-                <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20the%20Chicken%20Piecer%20with%20Chips%20($1.50)." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-800 p-2.5 rounded-full transition-all" title="Order via WhatsApp">
-                  <i data-lucide="message-square" class="w-5 h-5"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Highlight Item 3 -->
-          <div class="bg-white rounded-3xl overflow-hidden border border-amber-100 shadow-sm food-card flex flex-col justify-between">
-            <div class="relative aspect-video bg-zinc-100 overflow-hidden">
-              <div class="w-full h-full bg-amber-500/10 flex items-center justify-center p-6 text-center">
-                <div class="space-y-2">
-                  <i data-lucide="utensils-cross-hair" class="w-10 h-10 text-amber-500 mx-auto"></i>
-                  <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Traditional Plate</span>
-                </div>
-              </div>
-              <div class="absolute top-4 left-4 bg-emerald-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-sm">
-                Local Choice
-              </div>
-              <div class="absolute bottom-4 right-4 bg-zinc-950/80 backdrop-blur-sm text-white font-display font-extrabold text-lg px-3.5 py-1 rounded-xl shadow-sm">
-                $3.00
-              </div>
-            </div>
-            <div class="p-6 space-y-4">
-              <div>
-                <h3 class="text-xl font-bold text-zinc-950">Sadza &amp; Beef Stew</h3>
-                <p class="text-sm text-zinc-500 mt-2 font-medium">A perfect local dish. Thick, freshly steamed white cornmeal porridge (Sadza) served with traditional slow-cooked beef stew and local leafy green greens (kovo).</p>
-              </div>
-              <div class="pt-4 border-t border-zinc-100 flex items-center justify-between">
-                <span class="text-xs text-amber-600 font-bold flex items-center gap-1">
-                  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-                  4.9 (120+ Reviews)
-                </span>
-                <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20I'd%20like%20to%20order%20the%20Sadza%20and%20Beef%20($3)." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-800 p-2.5 rounded-full transition-all" title="Order via WhatsApp">
-                  <i data-lucide="message-square" class="w-5 h-5"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
+        <!-- Column 2: Quick Links -->
+        <div class="footer-column footer-links-col">
+          <h3 class="footer-col-title">QUICK LINKS</h3>
+          <ul class="footer-links-list">
+            <li><a href="#home" class="footer-link-item">Home</a></li>
+            <li><a href="#signature-menu" class="footer-link-item">Signature Menu</a></li>
+            <li><a href="#complete-meals" class="footer-link-item">Full Menu</a></li>
+            <li><a href="#scan-to-order" class="footer-link-item">Scan to Order</a></li>
+            <li><a href="#locations" class="footer-link-item">Visit Us</a></li>
+            <li><a href="#reviews" class="footer-link-item">Customer Reviews</a></li>
+          </ul>
         </div>
 
-      </div>
-    </section>
+        <!-- Column 3: Contact Info -->
+        <div class="footer-column footer-contact-col">
+          <h3 class="footer-col-title">CONTACT</h3>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <span class="footer-contact-icon">📍</span>
+              <span class="footer-contact-text">Along Fifth Road,<br>50 metres from Roadport,<br>Harare</span>
+            </li>
+            <li class="footer-contact-item">
+              <span class="footer-contact-icon">📞</span>
+              <a href="tel:0789951127" class="footer-contact-text footer-phone-link">078 995 1127</a>
+            </li>
+            <li class="footer-contact-item">
+              <span class="footer-contact-icon">🕒</span>
+              <span class="footer-contact-text"><strong>Open Daily</strong><br>7:00 AM – 8:30 PM</span>
+            </li>
+          </ul>
+        </div>
 
-    <!-- Location Spotlight Banner -->
-    <section class="py-16 bg-zinc-950 text-white relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#d97706,transparent_40%)] opacity-20"></div>
-      
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <div class="lg:col-span-7 space-y-6">
-            <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-              Hungry in central Harare?<br />Find us in 2 minutes!
-            </h2>
-            <p class="text-zinc-300 font-medium leading-relaxed max-w-xl">
-              We are located perfectly for shoppers, commuters, and travelers. Walk down <strong>Fifth Road</strong> just <strong>50 meters from the Roadport Bus Terminal</strong>. Look for our iconic blue-and-white striped awning and yellow sign!
-            </p>
-            <div class="space-y-4 pt-2">
-              <div class="flex items-start gap-3.5">
-                <div class="w-10 h-10 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/20">
-                  <i data-lucide="navigation" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-white">Physical Address</h4>
-                  <p class="text-sm text-zinc-400 font-medium">Along Fifth Road, 50 meters from Roadport, Harare, Zimbabwe</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3.5">
-                <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/20">
-                  <i data-lucide="message-circle" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-white">Order via Call or WhatsApp Lines</h4>
-                  <p class="text-sm text-zinc-400 font-medium">0773 532 790 | 0772 878 547 | 0789 951 127</p>
-                </div>
-              </div>
+        <!-- Column 4: Order Online (QR Code) -->
+        <div class="footer-column footer-qr-col">
+          <h3 class="footer-col-title">ORDER ONLINE</h3>
+          <div class="footer-qr-container">
+            <div class="footer-qr-wrapper">
+              <img src="https://pub-1d12d1bcd0c54b5282f7b9e9eec3ba59.r2.dev/assets/images/qr%20codes/QRcode_a1.jpg" alt="Scan to Order QR Code" class="footer-qr-image" loading="lazy" referrerPolicy="no-referrer" width="110" height="110">
             </div>
+            <p class="footer-qr-label">Scan to Order</p>
+            <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="footer-qr-domain">menu.eatbamboochicken.com</a>
           </div>
-
-          <div class="lg:col-span-5">
-            <!-- Simulated Map Card -->
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 shadow-xl space-y-6">
-              <div class="flex items-center justify-between pb-4 border-b border-zinc-800">
-                <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">Store is Open Now</span>
-                </div>
-                <span class="text-xs font-semibold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full">Harare CBD</span>
-              </div>
-
-              <!-- Route helper -->
-              <div class="space-y-4">
-                <h4 class="font-bold text-white text-sm uppercase tracking-wider">Storefront Guide</h4>
-                <ol class="space-y-3.5 text-xs text-zinc-400 font-medium">
-                  <li class="flex gap-3">
-                    <span class="w-5 h-5 rounded-full bg-amber-500 text-zinc-950 flex items-center justify-center font-bold shrink-0">1</span>
-                    <span>Start at Roadport Bus Terminal Entrance on Fifth Road</span>
-                  </li>
-                  <li class="flex gap-3">
-                    <span class="w-5 h-5 rounded-full bg-amber-500 text-zinc-950 flex items-center justify-center font-bold shrink-0">2</span>
-                    <span>Walk 50 meters North along Fifth Road</span>
-                  </li>
-                  <li class="flex gap-3">
-                    <span class="w-5 h-5 rounded-full bg-amber-500 text-zinc-950 flex items-center justify-center font-bold shrink-0">3</span>
-                    <span>Spot our vibrant Yellow storefront on your right!</span>
-                  </li>
-                </ol>
-              </div>
-
-              <!-- Real quick contact buttons -->
-              <div class="flex gap-3 pt-2">
-                <a href="https://wa.me/263773532790?text=Hi%20Bamboo%20Chicken!%20Where%20exactly%20on%20Fifth%20Road%20are%20you%20located?" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-center py-3.5 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
-                  <i data-lucide="message-square" class="w-4 h-4"></i>
-                  WhatsApp Live Chat
-                </a>
-                <a href="tel:+263773532790" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-4 py-3.5 rounded-xl text-xs flex items-center justify-center transition-all" title="Call directly">
-                  <i data-lucide="phone" class="w-4 h-4"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-zinc-900 border-t border-zinc-800 text-zinc-400 py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
-          <!-- Column 1: Brand -->
-          <div class="space-y-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 bg-amber-50">
-                <img src="assets/images/bamboo_chicken_logo_1782251083522.jpg" alt="Bamboo Chicken Logo" class="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              </div>
-              <h3 class="text-white font-display font-bold text-lg">
-                Bamboo <span class="text-amber-500">Chicken</span>
-              </h3>
-            </div>
-            <p class="text-xs leading-relaxed font-medium">
-              Crispy & Juicy. Serving Harare's best fast food meals, freshly made local chips, nuggets, pies, burgers, and traditional Sadza & Beef from central Fifth Road.
-            </p>
-          </div>
-
-          <!-- Column 2: Quick Links -->
-          <div class="space-y-4">
-            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Quick Links</h4>
-            <ul class="space-y-2 text-xs font-semibold">
-              <li><a href="/" class="hover:text-amber-500 transition-colors">Home Page</a></li>
-              <li><a href="/menu.html" class="hover:text-amber-500 transition-colors">Food Menu</a></li>
-              <li><a href="/about.html" class="hover:text-amber-500 transition-colors">Our Story</a></li>
-              <li><a href="/contact.html" class="hover:text-amber-500 transition-colors">Contact Us</a></li>
-            </ul>
-          </div>
-
-          <!-- Column 3: Contact Info -->
-          <div class="space-y-4">
-            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Find Us</h4>
-            <ul class="space-y-2.5 text-xs font-medium">
-              <li class="flex items-start gap-2">
-                <i data-lucide="map-pin" class="w-4 h-4 text-amber-500 shrink-0"></i>
-                <span>Along Fifth Road, 50m from Roadport, Harare, Zimbabwe</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <i data-lucide="phone" class="w-4 h-4 text-amber-500"></i>
-                <span>0773 532 790</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-500"></i>
-                <span>0772 878 547</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Column 4: Hours -->
-          <div class="space-y-4">
-            <h4 class="text-white font-bold text-sm uppercase tracking-wider">Our Hours</h4>
-            <ul class="space-y-2 text-xs font-semibold">
-              <li class="flex justify-between border-b border-zinc-800 pb-1.5">
-                <span>Monday - Friday</span>
-                <span class="text-white">8:00 AM - 9:00 PM</span>
-              </li>
-              <li class="flex justify-between border-b border-zinc-800 pb-1.5">
-                <span>Saturday</span>
-                <span class="text-white">8:00 AM - 9:00 PM</span>
-              </li>
-              <li class="flex justify-between">
-                <span>Sunday</span>
-                <span class="text-white">8:00 AM - 9:00 PM</span>
-              </li>
-            </ul>
-          </div>
-
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-container">
+          <p class="footer-copyright">© 2026 Bamboo Chicken. All Rights Reserved.</p>
+          <p class="footer-crafted">Designed with ❤️ for great food experiences.</p>
         </div>
-
-        <!-- Bottom bar -->
-        <div class="pt-8 border-t border-zinc-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] font-semibold">
-          <p>© 2026 Bamboo Chicken Harare. All rights reserved.</p>
-          <div class="flex gap-4">
-            <a href="/menu.html" class="hover:text-amber-500 transition-colors">Menu</a>
-            <span>•</span>
-            <a href="/contact.html" class="hover:text-amber-500 transition-colors">WhatsApp Order Support</a>
-          </div>
-        </div>
-
       </div>
     </footer>
+  </main>
 
-    <!-- Interactive Logic (Drawer menu & Lucide icons rendering) -->
-    <script>
-      // Initialize Icons
-      lucide.createIcons();
+  <!-- Full-Screen Mobile Overlay Menu -->
+  <div id="mobile-menu-overlay" class="mobile-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+    <!-- Close Button (top-right, absolute) -->
+    <button class="overlay-close" aria-label="Close Navigation Menu">✕</button>
 
-      // Mobile Menu Drawer Toggle
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
+    <div class="overlay-inner">
+      <!-- Top Section: Centered Brand Info (no logo) -->
+      <div class="overlay-top">
+        <h2 class="overlay-brand-title"><span class="bamboo-text">BAMBOO</span> <span class="chicken-text">CHICKEN</span></h2>
+        <p class="overlay-brand-tagline">Crispy & Juicy,<br>Taste the Bamboo Magic!</p>
+      </div>
+      
+      <!-- Thin Divider -->
+      <div class="overlay-divider"></div>
+      
+      <!-- Navigation (Left Aligned) -->
+      <div class="overlay-body">
+        <nav class="overlay-nav" aria-label="Mobile Navigation">
+          <a href="#home" class="overlay-nav-item" data-index="0">
+            <svg class="overlay-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="overlay-text">Home</span>
+          </a>
+          <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="overlay-nav-item" data-index="1">
+            <svg class="overlay-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span class="overlay-text">Menu</span>
+          </a>
+          <a href="#promotions" class="overlay-nav-item" data-index="2">
+            <svg class="overlay-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+            <span class="overlay-text">Special Offers</span>
+          </a>
+          <a href="#locations" class="overlay-nav-item" data-index="3">
+            <svg class="overlay-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="overlay-text">Locations</span>
+          </a>
+          <a href="#about" class="overlay-nav-item" data-index="4">
+            <svg class="overlay-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span class="overlay-text">About Us</span>
+          </a>
+          <a href="#contact" class="overlay-nav-item" data-index="5">
+            <svg class="overlay-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="overlay-text">Contact</span>
+          </a>
+        </nav>
+      </div>
 
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-          menuIcon.classList.toggle('hidden');
-          closeIcon.classList.toggle('hidden');
-        });
-      }
-    </script>
-  </body>
+      <!-- Bottom Pinned Section -->
+      <div class="overlay-bottom">
+        <a href="https://menu.eatbamboochicken.com" target="_blank" rel="noopener noreferrer" class="btn-overlay-order">
+          <span class="btn-overlay-order-text">Order Now</span>
+          <span class="steam-container" aria-hidden="true">
+            <span class="steam-wisp wisp-1"></span>
+            <span class="steam-wisp wisp-2"></span>
+            <span class="steam-wisp wisp-3"></span>
+          </span>
+        </a>
+        <p class="overlay-footer-text">Freshly Prepared Daily</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cinematic QR Transition Overlay -->
+  <div id="qr-transition-overlay" class="qr-transition-overlay" aria-hidden="true">
+    <div class="steam-container">
+      <div class="steam-particle steam-1"></div>
+      <div class="steam-particle steam-2"></div>
+      <div class="steam-particle steam-3"></div>
+    </div>
+    <div class="transition-text-container">
+      <p class="transition-title-line-1">Taste the</p>
+      <h2 class="transition-title-line-2">Bamboo Magic</h2>
+    </div>
+  </div>
+
+</body>
 </html>
